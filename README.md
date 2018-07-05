@@ -1,7 +1,7 @@
-ecommerce-senac-dev-front-end
-======
+# Ecommerce-senac-dev-front-end
+
 Projeto desenvolvido no curso de desenvolvedor web front end do senac
----
+
 ## Funcionalidades
 
 ### Home
