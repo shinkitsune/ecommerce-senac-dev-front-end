@@ -1,65 +1,72 @@
-function inicializaPagina(nome) {
-    const elemento = document.querySelector('.titulo');
-    elemento.innerText = 'Olá ' + nome;
-}
-
-function pulaLinha() {
-    document.write('<br>');
-}
-
-function exibeTexto() {
-
-}
-
-const number1 = document.querySelector('#number1');
-const number2 = document.querySelector('#number2');
+const numero1 = document.querySelector("#number1");
+const numero2 = document.querySelector("#number2");
+const numero3 = document.querySelector("#number3");
+const numero4 = document.querySelector("#number4");
 
 function executarSoma() {
-
-    // pega valores
-    // const number1 = parseInt(document.querySelector('#number1').value);
-    // const number2 = parseInt(document.querySelector('#number2').value);
-    //converte para numeros
-
-    //somar
-    const soma = parseInt(number1.value) + parseInt(number2.value);
-    //exibir resultado
-
-    document.querySelector('#resultado').innerText = soma;
-
+    excutaOperacao(numero1, numero2, "#resultado-soma", "soma");
 }
 
-function decideEstadoBotao() {
-    //const number1 = parseInt(document.querySelector('#number1').value);
-    //const number2 = parseInt(document.querySelector('#number2').value);
+function executarSub() {
+    excutaOperacao(numero3, numero4, "#resultado-sub", "sub");
+}
 
-    if (number1.value === '' && number2.value === '') {
-        habilitaSomarBtn();
-    } else {
-        desabilitaSomarBtn();
+function excutaOperacao(num1, num2, idResultado, tipoOperacao) {
+    let resultado;
+    num1 = parseInt(num1.value);
+    num2 = parseInt(num2.value);
+    if (tipoOperacao === "soma") {
+        resultado = num1 + num2;
     }
-
+    if (tipoOperacao === "sub") {
+        resultado = num1 - num2;
+    }
+    document.querySelector(idResultado).innerText = resultado;
 }
 
-function desabilitaSomarBtn() {
-    const botao = document.querySelector('#botao-somar');
-    botao.disabled = false;
+function mudaEstadoButao(isDisabled, idBotao) {
+    const botao = document.querySelector(idBotao);
+    botao.disabled = isDisabled;
 }
 
-function habilitaSomarBtn() {
-    const botao = document.querySelector('#botao-somar');
-    botao.disabled = true;
-}
-document.querySelector('#botao-somar').onclick = executarSoma;
-
-number1.onkeyup = decideEstadoBotao;
-number2.onkeyup = decideEstadoBotao;
-
-function apagarSpan() {
-
-    document.querySelector('#resultado').innerText = '';
-
+function decideEstadoBotao(number1, number2, idBotao) {
+    if (number1.value !== "" && number2.value !== "") {
+        mudaEstadoButao(false, idBotao);
+    } else {
+        mudaEstadoButao(true, idBotao);
+    }
 }
 
-number1.onfocus = apagarSpan;
-number2.onfocus = apagarSpan;
+function zerarResultadoSoma() {
+    document.querySelector("#resultado-soma").innerText = "";
+}
+
+function zerarResultadoSub() {
+    document.querySelector("#resultado-sub").innerText = "";
+}
+
+function decideEstadoSoma() {
+    decideEstadoBotao(numero1, numero2, "#botao-somar");
+}
+
+function decideEstadoSub() {
+    decideEstadoBotao(numero3, numero4, '#botao-sub');
+}
+
+
+
+document.querySelector("#botao-somar").onclick = executarSoma;
+document.querySelector("#botao-sub").onclick = executarSub;
+
+//soma bindings
+numero1.onkeyup = decideEstadoSoma;
+numero2.onkeyup = decideEstadoSoma;
+numero1.onfocus = zerarResultadoSoma;
+numero2.onfocus = zerarResultadoSoma;
+
+numero3.onkeyup = decideEstadoSub;
+numero4.onkeyup = decideEstadoSub;
+numero3.onfocus = zerarResultadoSub;
+numero4.onfocus = zerarResultadoSub;
+
+//sub bindings
