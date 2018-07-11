@@ -21,6 +21,7 @@ Projeto desenvolvido no curso de desenvolvedor web front end do senac
 - Footer
 
 ## Planejamento
+
 - Informação do Produto ( 2 aulas )
 - Footer ( 1/2 aula )
 - Header ( 1 e 1/2 aula)
