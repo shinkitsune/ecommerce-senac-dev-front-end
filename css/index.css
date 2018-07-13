@@ -7,3 +7,26 @@
     max-width: 50%;
     display: inline;
 }
+
+img.selecionada {
+    border: solid 2px yellow;
+}
+
+main {
+    margin-bottom: 50px;
+}
+
+footer {
+    width: 100%;
+    background-color: black;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer>.link-interno {
+    margin: 5px 10px;
+}
