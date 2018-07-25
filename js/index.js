@@ -1,46 +1,34 @@
-let produtos = [];
-let produtoSelecionado = {};
-let parametros = window.location.search;
-
 function carregarDados() {
     let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            produtos = JSON.parse(this.responseText);
-            preencheHTML();
+            const produtos = JSON.parse(this.responseText);
+            preencherHtmlProdutos(produtos);
         }
     };
     xhttp.open("GET", "/dados/produtos.json", true);
     xhttp.send();
 }
 
-function preencheHTML() {
-    let parametroProduto = 0;
-    if (parametros.includes("produto=")) {
-        parametroProduto = parametros.substring(parametros.indexOf("produto=") + 8);
-        parametroProduto = parametroProduto >= produtos.length ? 0 : parametroProduto;
+function preencherHtmlProdutos(produtos) {
+    let listaProdutosHtml = "";
+    
+    for (let i = 0; i < produtos.length; i++) {
+        const elemento = produtos[i];
+        listaProdutosHtml += `
+        <div class="card">
+            <img class="card-img-top" src="${elemento.imagens[0]}"
+                alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">${elemento.titulo}</h5>
+                <p class="card-text">${elemento.descricao}</p>
+                <a href="/produto.html?produto=${i}" class="btn btn-primary">Detalhes</a>
+            </div>
+        </div>
+        `;
     }
 
-    produtoSelecionado = produtos[parametroProduto];
-    document.querySelector("#titulo").innerText = produtoSelecionado.titulo;
-    document.querySelector("#descricao").innerText = produtoSelecionado.descricao;
-    document.querySelector("#preco").innerText = `R$ ${produtoSelecionado.preco}`;
-    document.querySelector("#imagem-ativa").src = produtoSelecionado.imagens[0];
-    document.querySelector("#imagem-0").classList.add("selecionada");
-    document.querySelector("#imagem-0").src = produtoSelecionado.imagens[0];
-    document.querySelector("#imagem-1").src = produtoSelecionado.imagens[1];
-    document.querySelector("#imagem-2").src = produtoSelecionado.imagens[2];
-    document.querySelector("#imagem-3").src = produtoSelecionado.imagens[3];
-}
-
-function selecionarImagem(indice) {
-    document.querySelector("#imagem-0").classList.remove("selecionada");
-    document.querySelector("#imagem-1").classList.remove("selecionada");
-    document.querySelector("#imagem-2").classList.remove("selecionada");
-    document.querySelector("#imagem-3").classList.remove("selecionada");
-
-    document.querySelector("#imagem-" + indice).classList.add("selecionada");
-    document.querySelector("#imagem-ativa").src = produtoSelecionado.imagens[indice];
+    document.querySelector("#lista-produtos").innerHTML = listaProdutosHtml;
 }
 
 carregarDados();

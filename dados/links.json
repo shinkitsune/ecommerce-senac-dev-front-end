@@ -1,21 +1,18 @@
-[{
+[
+    {
         "href": "/index.html",
-        "nomeExibicao": "Home"
-    },
-    {
-        "href": "/produtos.html",
-        "nomeExibicao": "Produtos"
-    },
-    {
-        "href": "/historia.html",
-        "nomeExibicao": "Historia"
+        "nomeExibicao": "Pagina inicial"
     },
     {
         "href": "/sobre.html",
         "nomeExibicao": "Sobre"
     },
     {
-        "href": "/contato.html",
-        "nomeExibicao": "Contato"
+        "href": "/produtos.html",
+        "nomeExibicao": "Produtos"
+    },
+    {
+        "href": "/contatos.html",
+        "nomeExibicao": "Contatos"
     }
 ]

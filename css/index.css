@@ -1,19 +1,26 @@
-.imagens img {
+img {
     max-width: 100%;
-}
-
-.imagens,
-.descrition {
-    max-width: 50%;
-    display: inline;
+    max-height: 100%;
 }
 
 img.selecionada {
-    border: solid 2px yellow;
+    border: solid 2px greenyellow;
 }
 
 main {
     margin-bottom: 50px;
+}
+
+#lista-produtos {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#lista-produtos .card {
+    width: 200px;
+    height: 400px;
+    margin: 10px;
 }
 
 footer {
@@ -27,6 +34,6 @@ footer {
     justify-content: center;
 }
 
-footer>.link-interno {
+footer > .link-interno {
     margin: 5px 10px;
 }
